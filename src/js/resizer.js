@@ -119,6 +119,19 @@
           this._resizeConstraint.side - this._ctx.lineWidth / 2,
           this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
+      // Добавленный функционал
+      // Установка прозрачности и вывод прямоугольника
+      this._ctx.globalAlpha = 0.8;
+      this._ctx.fillStyle = "black";
+      this._ctx.strokeRect(0, 0, this._ctx.width, this._ctx.height);
+
+      //Вывод размера изображения
+      this._ctx.font = "18px Tahoma";
+      this._ctx.fillStyle   = "white";
+      this._ctx.textAlign = "center";
+      this._ctx.fillText(this._container.width + " x " + this._container.height, 0, -285);
+
+
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
       // следующий кадр рисовался с привычной системой координат, где точка
