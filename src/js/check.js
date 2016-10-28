@@ -4,7 +4,7 @@
  */
 'use strict';
 
-function getMessage(a, b) {
+(function getMessage(a, b) {
 
   if (a === true) {
     return 'Переданное GIF-изображение анимировано и содержит ' + b + ' кадров';
@@ -28,4 +28,4 @@ function getMessage(a, b) {
     return 'Переданы некорректные данные';
   }
 
-}
+})();
