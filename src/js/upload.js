@@ -71,7 +71,19 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
-  var resizeFormIsValid = function() {
+  var resizeFormIsValid = function(resizer) {
+    var x = resizer._resizeConstraint.x;
+    var y = resizer._resizeConstraint.y;
+    var side = resizer._resizeConstraint.side;
+    var imageWidth = resizer._image.naturalWidth;
+    var imageHeight = resizer._image.naturalHeight;
+
+    if ( x < 0
+      || y < 0
+      || x + side > imageWidth
+      || y + side > imageHeight) {
+      return false;
+    }
     return true;
   };
 
@@ -193,7 +205,7 @@
   resizeForm.onsubmit = function(evt) {
     evt.preventDefault();
 
-    if (resizeFormIsValid()) {
+    if (resizeFormIsValid(currentResizer)) {
       var image = currentResizer.exportImage().src;
 
       var thumbnails = filterForm.querySelectorAll('.upload-filter-preview');
@@ -205,6 +217,9 @@
 
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
+    } else {
+      var buttonForward = document.getElementById('resize-fwd');
+      buttonForward.setAttribute('disabled', true);
     }
   };
 
